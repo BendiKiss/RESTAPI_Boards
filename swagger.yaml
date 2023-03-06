@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  title: MEN REST API
+  description: MongoDB ExpressJS NodeJS REST API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000/api/
+    description: Localhost development server
+  - url: https://men-restapi-easv-s23.onrender.com/api/
+    description: Remote deployment
+
+tags:
+  - name: Get Routes
+    description: Routes that get boards
+
+
+components:
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: auth-token
+
+  schemas:
+    Boards:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        inStock:
+          type: boolean
+    
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        date:
+          type: string
+
+paths:
+
+  /user/register:
+    post:
+      summary: Register a new User
+      description: Register a new User in the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+
+      responses:
+        201:
+          description: User created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  _id:
+                    type: string
+
+  /user/login:
+    post:
+      summary: Login a User
+      description: Login a User in order to get JWT token (auth-token)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      
+      responses:
+        200:
+          description: User logged in succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  data:
+                    type: string
+
+
+  /boards:
+    get:
+      tags:
+        - Get Routes
+      summary: Retrieves a list of boards
+      description: Retrieves a list of boards as JSON objects.
+      responses:
+        200:
+          description: A list of boards JSON objects in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Boards"
+    
+    post:
+      summary: Create a new board
+      description: Create a new board
+      security:
+        - ApiKeyAuth: []      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Boards"
+
+      responses:
+        201:
+          description: Board created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Boards"
+  
+  /boards/{id}:
+    get:
+      tags:
+      - Get Routes
+      summary: Specific board
+      description: Retrieves a specific board based on it id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      responses:
+        200:
+          description: A board in the format of a JSON object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Boards"
+   
+    put:
+      summary: Updates a specific board
+      description: Updates a specific board based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Boards"
+
+      responses:
+        201:
+          description: Board updated succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Boards"
+
+    delete:
+      summary: Deletes a specific board
+      description: Deletes a specific board based on it id
+      security:
+        - ApiKeyAuth: []            
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: MongoDB id
+          schema:
+            type: string      
+
+      responses:
+        201:
+          description: board deleted succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Boards"
+
+
+  /boards/random:
+    get:
+      summary: Retrieves a random board
+      description: Retrieves a random board as a JSON objects.
+      responses:
+        200:
+          description: A random board JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Boards"
+
+  /boards/{field}/{value}:
+    get:
+      summary: Retrieves a liste of board based on the search filter
+      description: Retrieves a random board as a JSON objects.
+      parameters:
+        - in: path
+          name: field
+          required: true
+          description: Selected field from the document schema
+          schema:
+            type: string
+        - in: path
+          name: value
+          required: true
+          description: Selected value from the document schema
+          schema:
+            type: string
+      responses:
+        200:
+          description: A random board JSON object.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Boards"
+  
+
+
+    
+
+    
