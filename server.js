@@ -31,6 +31,8 @@ require("dotenv-flow").config();
 // parse request of content type JSON
 app.use(bodyParser.json());
 
+
+
 mongoose.connect
 (
     process.env.DBHOST,
@@ -40,8 +42,8 @@ mongoose.connect
     }
 ).catch(error => console.log("Error connecting to MOngoDB:" + error));
 
-
 mongoose.connection.once("open", () => console.log("Connected successfully to MongoDB"));
+
 
 //routes
 app.get("/api/welcome", (req, res) => {
@@ -50,11 +52,13 @@ app.get("/api/welcome", (req, res) => {
 
 })
 
+
 //post, put, delete - > CRUD
 app.use("/api/boards", boardsRoutes);
 app.use("/api/user", authRoutes);
 
 const PORT = process.env.PORT || 4000;
+
 
 //start-up server
 
