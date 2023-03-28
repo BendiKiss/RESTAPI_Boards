@@ -15,7 +15,7 @@ before((done) => {
 });
 
 after((done) => {
-    boards.deleteMany({}/ function(err) {});
+    //boards.deleteMany({}/ function(err) {});
     done();
 });
 
@@ -53,10 +53,10 @@ describe('/First Test Collection', function () {
     it('should post valid board', (done) => {
 
         let board = {
-            name: "Test board",
-            type: "test",
-            description: "Test board description",
-            price: 300,
+            name: "Test Board",
+            type: "Testing ",
+            description: "Testing on boards",
+            price: 100,
             inStock: true
       }
 
@@ -69,6 +69,21 @@ describe('/First Test Collection', function () {
         });
 
     });
+
+    it('should verify that we have 1 boards in the DB', (done) => {
+
+        chai.request(server)
+        .get('/api/boards')
+        .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.a('array');
+            res.body.length.should.be.equal(1);
+
+            done();
+        });
+
+    });
+
 
     it (' should test two values....', function () {
         //actual test content in here 
