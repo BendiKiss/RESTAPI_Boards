@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
 const app = express();
+
+require("dotenv-flow").config();
+
 
 /*
 //cors solution
@@ -26,10 +29,9 @@ const boardsRoutes = require("./routes/boards");
 const authRoutes = require("./routes/auth");
 
 
-require("dotenv-flow").config();
 
 // parse request of content type JSON
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 
 mongoose.set('strictQuery', true);
