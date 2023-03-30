@@ -24,7 +24,7 @@
     "joi": "^17.8.3",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.1.0",
-    "mongoose": "^7.0.0",
+    "mongoose": "^6.1.7",
     "nodemon": "^2.0.21",
     "swagger-ui-express": "^4.6.2",
     "yamljs": "^0.3.0"

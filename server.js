@@ -32,7 +32,7 @@ require("dotenv-flow").config();
 app.use(bodyParser.json());
 
 
-
+mongoose.set('strictQuery', true);
 mongoose.connect
 (
     process.env.DBHOST,
