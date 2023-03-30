@@ -163,7 +163,6 @@ describe('Boards workflow tests', () => {
             });
     });
     
-    
 
     // Invalid input test
     it('invalid user input test', (done) => {
@@ -188,7 +187,5 @@ describe('Boards workflow tests', () => {
                 done();              
             });
     });
-    
-
     
 });
