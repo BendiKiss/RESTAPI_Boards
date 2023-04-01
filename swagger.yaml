@@ -254,9 +254,3 @@ paths:
                 type: object
                 items:
                   $ref: "#/components/schemas/Boards"
-  
-
-
-    
-
-    
