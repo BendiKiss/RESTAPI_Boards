@@ -152,7 +152,7 @@ function mapData(element)
         inStock: element.inStock,
 
         // add uri (HATEOAS) for this specific resource
-        uri: "/api/products/" + element._id
+        uri: "/api/boards/" + element._id
     }
 
     return outputObj;
