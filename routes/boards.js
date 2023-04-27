@@ -86,6 +86,15 @@ router.get("/instock", (req, res) => {
     .catch (err => { res.status(500).send( { message: err.message } )})
 });
 
+// Read all type of boards (get)
+router.get("/type", (req, res) => { 
+
+    boards.find(req.params.type)
+    .then(data => { res.send(mapArray(data)) })
+    .catch (err => { res.status(500).send( { message: err.message } )})
+});
+
+
 // Update specific boards (put)
 router.put("/:id", (req, res) => { 
     const id = req.params.id;
@@ -137,6 +146,7 @@ function mapData(element)
         id: element._id,
         name: element.name,
         type: element.type,
+        style: element.style,
         description: element.description,
         price: element.price,
         inStock: element.inStock,

@@ -46,6 +46,7 @@ describe('Boards workflow tests', () => {
                         {
                             name: "Test Board",
                             type: "Testing ",
+                            style: "Test style",
                             description: "Testing on boards",
                             price: 100,
                             inStock: true
@@ -64,6 +65,8 @@ describe('Boards workflow tests', () => {
                                 
                                 let savedBoards = res.body[0];
                                 expect(savedBoards.name).to.be.equal(boards.name);
+                                expect(savedBoards.type).to.be.equal(boards.type);
+                                expect(savedBoards.style).to.be.equal(boards.style);
                                 expect(savedBoards.description).to.be.equal(boards.description);
                                 expect(savedBoards.price).to.be.equal(boards.price);
                                 expect(savedBoards.inStock).to.be.equal(boards.inStock);
@@ -123,6 +126,7 @@ describe('Boards workflow tests', () => {
                         {
                             name: "Test Board",
                             type: "Testing ",
+                            style: "Test style",
                             description: "Testing on boards",
                             price: 100,
                             inStock: true
@@ -141,6 +145,8 @@ describe('Boards workflow tests', () => {
                                 
                                 let savedBoards = res.body[0];
                                 expect(savedBoards.name).to.be.equal(boards.name);
+                                expect(savedBoards.type).to.be.equal(boards.type);
+                                expect(savedBoards.style).to.be.equal(boards.style);
                                 expect(savedBoards.description).to.be.equal(boards.description);
                                 expect(savedBoards.price).to.be.equal(boards.price);
                                 expect(savedBoards.inStock).to.be.equal(boards.inStock);

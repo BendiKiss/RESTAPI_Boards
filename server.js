@@ -36,8 +36,6 @@ app.get("/api/welcome", (req, res) => {
 })
 
 
-
-
 // parse request of content type JSON
 app.use(bodyParser.json());
 

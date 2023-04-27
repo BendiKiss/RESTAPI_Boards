@@ -6,11 +6,10 @@ let boardsSchema = new Schema(
 {
     name: {type: String},
     type: {type: String},
+    style: {type: String},
     description: {type: String},
     price: {type: Number},
     inStock: {type: Boolean}
-
-
 }
 );
 
