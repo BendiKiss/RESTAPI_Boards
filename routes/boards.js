@@ -7,7 +7,7 @@ const { verifyToken } = require("../validation");
 // CRUD operations
 
 // api/boards/
-// Create product (post)
+// Create boards (post)
 router.post("/", verifyToken, (req, res) => {
 
     data = req.body;
@@ -62,7 +62,7 @@ router.get("/:field/:value", (request, response) => {
     const field = request.params.field;
     const value = request.params.value;
     
-    product.find({ [field]: { $regex: request.params.value, $options:'i' } })
+    board.find({ [field]: { $regex: request.params.value, $options:'i' } })
     .then (data => { response.send(data) })  
     .catch (err => { 
         response.status(500).send( { message: err.message } )
@@ -114,7 +114,7 @@ router.put("/:id", (req, res) => {
 })
 });
 
-// Delete specific product (delete)
+// Delete specific board (delete)
 router.delete("/:id", (req, res) => {   
     
     const id = req.params.id;
