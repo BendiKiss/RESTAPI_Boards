@@ -6,14 +6,13 @@ const app = express();
 require("dotenv-flow").config();
 
 
-/*
+
 //cors solution
-const cors = require('cors'); -> npm install cors
+const cors = require('cors');
 app.use(cors({
-    origin: '* or domains',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
-*/
 
 //swagger deps
 const swaggerUi = require('swagger-ui-express');
